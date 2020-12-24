@@ -1,3 +1,46 @@
+function updateModesHTML() {
+	modeName = ""
+	balanceName = ""
+	// Naming order: Absurd AAU/NA Easy (or Easy-) Hard/Extreme Dream
+	if(modesSelected.includes("absurd")) {
+		modeName += "Absurd ";
+		balanceName += "absurd_";
+	}
+	if (modesSelected.includes("aau")) {
+		if(modesSelected.includes("na")) modeName += "AAU/";
+		else modeName += "AAU ";
+		balanceName += "aau_";
+	}
+	if (modesSelected.includes("na")) {
+		modeName += "NA ";
+		balanceName += "na_";
+	}
+	if (modesSelected.includes("easy")) {
+		if (modesSelected.includes("hard")) modeName += "Easy-";
+		else modeName += "Easy ";
+		balanceName += "easy_";
+	}	
+	if (modesSelected.includes("hard")) {
+		if (modesSelected.includes("extreme")) {
+			modeName += "Extreme ";
+			balanceName += "extreme_";
+		} else {
+			modeName += "Hard ";
+			balanceName += "hard_";
+		}
+		}	
+	if (modesSelected.includes("hikers_dream")) {
+		if(!modesSelected.includes("easy") && !modesSelected.includes("hard")) modeName += "Hikers ";
+		modeName += "Dream";
+		balanceName += "hikers_dream_";
+	}
+	if(balanceName != "") balanceName = balanceName.substring(0,balanceName.length -1);
+	if(modeName == "") modeName = "Normal";
+
+	tmp.el.selectedMode.setTxt("Selected Mode: "+(modeName));
+	tmp.el.selectedModeBalancing.setTxt("Balancing: "+ (MODEBALANCES[balanceName]?MODEBALANCES[balanceName].balancing:"Unknown! Proceed at your own risk."));
+}
+
 function updateOptionsHTML(){
 	if (player.tab == "options") {
 		for (let i = 0; i < Object.keys(MODES).length; i++) {
@@ -30,9 +73,10 @@ function updateOptionsHTML(){
 		tmp.el.hcc.changeStyle("visibility", (player.elementary.hc.unl)?"visible":"hidden")
 		tmp.el.tht.setTxt("Theory Tree Display: "+(player.options.tht?"GROUPS":"TREE"))
 		tmp.el.tht.changeStyle("visibility", (player.elementary.theory.tree.unl)?"visible":"hidden")
+
+		updateModesHTML()
 	}
 }
-
 function updatePreRanksHTML(){
 	tmp.el.distance.setTxt(
 		formatDistance(player.distance) +
@@ -1445,6 +1489,8 @@ function updateSkyHTML() {
 		}
 	}
 }
+
+
 
 function updateHTML() {
 	updateOptionsHTML()

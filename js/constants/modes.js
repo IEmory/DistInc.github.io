@@ -33,6 +33,46 @@ const COMBOS = {
 	},
 };
 
+const MODEBALANCES = {
+	aau_hard: {
+		balancing: "same as hard mode, but faster",
+		balanceCheck: false
+	},
+	na_hard: {
+		balancing: "almost balanced (late game is quite slow)",
+		balanceCheck: false
+	},
+	aau_na: {
+		balancing: "slightly faster than normal",
+		balanceCheck: false
+	},
+	absurd: {
+		balancing: "completely impossible",
+		balanceCheck: true
+	},
+	easy: {
+		balancing: "balanced up to Elementary",
+		balanceCheck: false
+	},
+	easy_hard: {
+		balancing: "balanced up to Elementary",
+		balanceCheck: false
+	},
+	extreme: {
+		balancing: "balanced up to Elementary",
+		balanceCheck: false
+	},
+	hikers_dream: {
+		balancing: "balanced up to Elementary",
+		balanceCheck: false,
+	},
+	"": {
+		balancing: "balanced up to endgame",
+		balanceCheck: false,
+	}
+};
+
+
 const MODES = {
 	hard: {
 		desc:
